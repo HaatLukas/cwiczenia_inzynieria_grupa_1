@@ -11,34 +11,34 @@ float naMorskie(double km) {
 
 int main() {
     int size = 10;
-    int Arr[size];
+    int AA[size];
     int negC = 0;
 
     for (int i = 0; i < size; i++) 
     {
-        std::cin >> Arr[i];
+        std::cin >> AA[i];
 
-        if (Arr[i] < 0)
+        if (AA[i] < 0)
         {
             negC++;
         }
     }
 
-    int *Brr = new int[negC];
+    int *BB = new int[negC];
     int idx = 0;
 
     for (int i = 0; i < size; i++)
     {
-        if (Arr[i] < 0)
+        if (AA[i] < 0)
         {
-            Brr[idx++] = Arr[i];
+            BB[idx++] = AA[i];
         }
     }
     std::cout << "\nLiczby ujemne:\n";
 
     for (int i = 0; i < negC; i++)
     {
-        std::cout << Brr[i] << " ";
+        std::cout << BB[i] << " ";
     }
 
     std::cout << "\nLiczba liczb ujemnych: " << negC << "\n";
