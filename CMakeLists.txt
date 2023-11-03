@@ -4,13 +4,13 @@ project(warcaby)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(warcaby main.cpp
-        core/timer.cpp
-        core/timer.h
-        core/engine.cpp
-        core/engine.h
-        core/player.cpp
-        core/player.h
-        core/board.cpp
-        core/board.h
-        core/pawn.cpp
-        core/pawn.h)
+        game/timer.cpp
+        game/timer.h
+        game/engine.cpp
+        game/engine.h
+        game/player.cpp
+        game/player.h
+        game/board.cpp
+        game/board.h
+        game/pawn.cpp
+        game/pawn.h)
