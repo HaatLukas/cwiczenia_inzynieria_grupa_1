@@ -18,7 +18,7 @@ namespace game {
         Player *winner;
         bool isActive;
 
-        void timeEnded(const Player *lost);
+        void timeEnded();
 
         void swapPlayer();
 
