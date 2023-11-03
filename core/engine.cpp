@@ -33,7 +33,7 @@ namespace game {
     void Engine::timeEnded(const Player *lost) {
         for (auto &player: players)
             if (player != lost)
-                winner = const_cast<Player*>(player);
+                winner = player;
 
         endGame();
     }
