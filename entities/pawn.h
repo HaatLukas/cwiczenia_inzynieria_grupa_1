@@ -5,9 +5,16 @@
 #ifndef WARCABY_PAWN_H
 #define WARCABY_PAWN_H
 
+
 namespace game {
 
-    class Pawn {
+    class Pawn{
+
+        int color;
+        bool isQueen = false;
+    public:
+        int getColor();
+        void setColor(int newColor);
 
     };
 

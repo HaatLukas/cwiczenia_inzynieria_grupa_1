@@ -8,6 +8,7 @@
 #include "timer.h"
 #include "../entities/player.h"
 #include "../entities/board.h"
+#include "SFML/Graphics.hpp"
 
 namespace game {
 
