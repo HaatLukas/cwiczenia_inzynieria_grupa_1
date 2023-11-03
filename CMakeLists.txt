@@ -15,7 +15,7 @@ add_executable(warcaby main.cpp
         entities/pawn.cpp
         entities/pawn.h)
 
-set(SFML_STATIC_LIBRARIES TRUE)
+set(SFML_STATIC_LIBRARIES FALSE)
 set(SFML_DIR C:/Libraries/SFML-2.6.0/lib/cmake/SFML)
 find_package(SFML COMPONENTS system window graphics audio REQUIRED)
 
