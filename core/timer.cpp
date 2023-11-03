@@ -18,7 +18,7 @@ namespace game {
         t.detach();
     }
 
-    void Timer::run(const std::function<void(int value)> &callback,  std::function<void()> &end) {
+    void Timer::run(const std::function<void(int value)> &callback, const std::function<void()> &end) {
         setInterval([=]() {
             callback(value);
             value--;
