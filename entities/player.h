@@ -6,6 +6,7 @@
 #define WARCABY_PLAYER_H
 
 #include <utility>
+#include <string>
 
 #include "../core/timer.h"
 
