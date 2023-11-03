@@ -12,4 +12,4 @@ namespace game {
     void Board::movePawn(coordinates c, coordinates newC) {
 
     }
-} // game
+} // core

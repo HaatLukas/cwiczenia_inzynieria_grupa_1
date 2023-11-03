@@ -78,4 +78,4 @@ namespace game {
 
         std::cout << "Gracz " << winner->getName() << " wygral!";
     }
-} // game
+} // core

@@ -32,6 +32,6 @@ namespace game {
         }
     };
 
-} // game
+} // core
 
 #endif //WARCABY_TIMER_H

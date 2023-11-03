@@ -6,8 +6,8 @@
 #define WARCABY_ENGINE_H
 
 #include "timer.h"
-#include "player.h"
-#include "board.h"
+#include "../entities/player.h"
+#include "../entities/board.h"
 
 namespace game {
 
@@ -40,6 +40,6 @@ namespace game {
         }
     };
 
-} // game
+} // core
 
 #endif //WARCABY_ENGINE_H

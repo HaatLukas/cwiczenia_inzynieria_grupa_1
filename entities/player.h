@@ -7,7 +7,7 @@
 
 #include <utility>
 
-#include "timer.h"
+#include "../core/timer.h"
 
 namespace game {
 
@@ -30,6 +30,6 @@ namespace game {
 
     };
 
-} // game
+} // core
 
 #endif //WARCABY_PLAYER_H
