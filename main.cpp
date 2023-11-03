@@ -1,5 +1,4 @@
-#include <iostream>
-#include "core/engine.h"
+#include "game/engine.h"
 
 int main() {
     game::Engine engine;
