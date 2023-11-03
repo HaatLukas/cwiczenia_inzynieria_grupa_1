@@ -17,7 +17,7 @@ namespace game {
             player->getTimer()->run([&](int val) {
                 std::cout << val << " gracz " << player->getName() << "\n"; // TODO: val to aktualna wartość timer'a
             }, [&]() {
-                timeEnded();
+                timeEnded(player);
             });
 
         activePlayer = players[0];
@@ -60,9 +60,9 @@ namespace game {
         }
     }
 
-    void Engine::timeEnded() {
+    void Engine::timeEnded(const Player *lost) {
         for (auto &player: players)
-            if (player->getTimer()->getValue() <= 0)
+            if (player != lost)
                 winner = player;
 
         endGame();
