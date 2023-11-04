@@ -16,9 +16,6 @@ namespace game {
 
     class Board {
         board_t board;
-        sf::Texture whiteTxt;
-        sf::Texture blackTxt;
-        sf::Texture BoardTxt;
 
 
     public:

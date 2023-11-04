@@ -30,6 +30,10 @@ namespace game {
     }
 
     void Board::draw(sf::RenderTarget &target) {
+        sf::Texture whiteTxt;
+        sf::Texture blackTxt;
+        sf::Texture BoardTxt;
+
         BoardTxt.loadFromFile("img/boardpn.png");
         sf::Sprite Back(BoardTxt);
         whiteTxt.loadFromFile("img/whitepwn.png");
