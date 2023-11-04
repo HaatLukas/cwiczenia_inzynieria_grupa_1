@@ -2,6 +2,7 @@
 // Created by david on 26.10.2023.
 //
 
+#include <cmath>
 #include "engine.h"
 
 namespace game {
