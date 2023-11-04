@@ -18,15 +18,13 @@ namespace game {
         t.detach();
     }
 
-    void Timer::run(const std::function<void(int value)> &callback, const std::function<void()> &end) {
+    void Timer::init() {
         setInterval([=]() {
-            callback(value);
             value--;
 
             if (value.load() <= 0) {
                 active = false;
                 value = 0;
-                end();
             }
         }, 1000);
     }

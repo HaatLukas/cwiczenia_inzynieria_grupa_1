@@ -17,7 +17,7 @@ namespace game {
         void setInterval(const std::function<void()> &fc, int interval);
 
     public:
-        void run(const std::function<void(int value)> &callback, const std::function<void()> &end);
+        void init();
 
         void stop();
 

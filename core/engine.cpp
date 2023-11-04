@@ -10,54 +10,54 @@ namespace game {
         players[0] = new Player("1");
         players[1] = new Player("2");
 
-        for (auto &player: players)
+        for (auto &player: players) {
             player->getTimer()->setValue(gameTime);
-
-        for (auto &player: players)
-            player->getTimer()->run([&](int val) {
-                std::cout << val << " gracz " << player->getName() << "\n"; // TODO: val to aktualna wartość timer'a
-            }, [&]() {
-                timeEnded(player);
-            });
+            player->getTimer()->init();
+        }
 
         activePlayer = players[0];
     }
 
     // TODO
     void Engine::run() {
-        startGame(); // TODO: po naciśnięciu "rozpocznij grę" ta funkcja powinna zostać wywołana
         sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!");
         board.Initialize();
-        while (true)
-        {
+        startGame();
 
-            while (window.isOpen())
+        while (window.isOpen())
+        {
+            if (isActive)
+                checkPlayerTimers();
+
+            sf::Event event;
+
+            while (window.pollEvent(event))
             {
 
-                sf::Event event;
+                if (event.type == sf::Event::Closed)
+                    window.close();
 
-                while (window.pollEvent(event))
+                else if (event.type == sf::Event::MouseButtonPressed)
                 {
-
-                    if (event.type == sf::Event::Closed)
-                        window.close();
-
-                    else if (event.type == sf::Event::MouseButtonPressed)
-                    {
-                        board.movePawn(event.mouseButton.x, event.mouseButton.y);
-                        //score = Update();
-                        //std::cout << score << std::endl;
-
-                    }
+                    board.movePawn(event.mouseButton.x, event.mouseButton.y);
+                    //score = Update();
+                    //std::cout << score << std::endl;
 
                 }
-                window.clear();
-
-                board.Draw(window);
-                window.display();
 
             }
+            window.clear();
+
+            board.Draw(window);
+            window.display();
+
         }
+    }
+
+    void Engine::checkPlayerTimers() {
+        for (auto &player: players)
+            if (player->getTimer()->getValue() <= 0)
+                timeEnded(player);
     }
 
     void Engine::timeEnded(const Player *lost) {
@@ -106,6 +106,6 @@ namespace game {
         for (auto &player: players)
             player->getTimer()->stop();
 
-        std::cout << "Gracz " << winner->getName() << " wygral!";
+        std::cout << "Gracz " << winner->getName() << " wygral!\n";
     }
 } // core
