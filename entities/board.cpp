@@ -18,14 +18,14 @@ namespace game {
         }
     }
 
-    void Board::movePiece(int startX, int startY, int endX, int endY) {
-        board[startX][startY].swap(board[endX][endY]);
+    void Board::movePiece(coordinates c, coordinates newC) {
+        board[c.x][c.y].swap(board[newC.x][newC.y]);
     }
 
     void Board::movePawn(coordinates c, coordinates newC) {
         if (newC.x >= 0 && newC.x <= 800 && newC.y >= 0 && newC.y <= 800) {
             // Wykonaj ruch
-            movePiece(c.x, c.y, newC.x, newC.y);
+            movePiece(c, newC);
         }
     }
 

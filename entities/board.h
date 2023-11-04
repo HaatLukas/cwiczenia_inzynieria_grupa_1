@@ -21,7 +21,7 @@ namespace game {
     public:
         Board();
 
-        void movePiece(int startX, int startY, int endX, int endY);
+        void movePiece(coordinates c, coordinates newC);
 
         void movePawn(coordinates c, coordinates newC);
 
