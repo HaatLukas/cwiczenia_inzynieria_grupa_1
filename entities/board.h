@@ -5,7 +5,7 @@
 #include <array>
 #include "pawn.h"
 #include "SFML/Graphics.hpp"
-#include <cmath>
+#include <optional>
 
 namespace game {
     typedef std::array<std::array<std::optional<Pawn>, 10>, 10> board_t;
