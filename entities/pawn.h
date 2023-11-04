@@ -8,13 +8,20 @@
 
 namespace game {
 
-    class Pawn{
-
+    class Pawn {
         int color;
         bool isQueen = false;
+
     public:
-        int getColor();
-        void setColor(int newColor);
+        explicit Pawn(int color = 0): color(color) {}
+
+        [[nodiscard]] int getColor() const {
+            return color;
+        }
+
+        void setColor(int newColor) {
+            color = newColor;
+        }
 
     };
 

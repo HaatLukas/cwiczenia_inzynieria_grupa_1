@@ -2,7 +2,6 @@
 // Created by david on 26.10.2023.
 //
 
-#include <iostream>
 #include "engine.h"
 
 namespace game {
@@ -20,35 +19,41 @@ namespace game {
 
     // TODO
     void Engine::run() {
+        coordinates startCor = {-1, -1};
+
         sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!");
-        board.Initialize();
         startGame();
 
-        while (window.isOpen())
-        {
+        while (window.isOpen()) {
             if (isActive)
                 checkPlayerTimers();
 
             sf::Event event;
 
-            while (window.pollEvent(event))
-            {
+            while (window.pollEvent(event)) {
 
                 if (event.type == sf::Event::Closed)
                     window.close();
 
-                else if (event.type == sf::Event::MouseButtonPressed)
-                {
-                    board.movePawn(event.mouseButton.x, event.mouseButton.y);
+                else if (event.type == sf::Event::MouseButtonPressed) {
+                    auto mouse = event.mouseButton;
+
+                    if (startCor.x == -1 || startCor.y == -1) {
+                        startCor = {static_cast<int>(std::ceil((float) (mouse.x - 80) / 80)),
+                                    static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))};
+                    } else {
+                        makeMove(startCor, {static_cast<int>(std::ceil((float) (mouse.x - 80) / 80)),
+                                                         static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))});
+                        startCor = {-1, -1};
+                    }
                     //score = Update();
                     //std::cout << score << std::endl;
-
                 }
 
             }
             window.clear();
 
-            board.Draw(window);
+            board.draw(window);
             window.display();
 
         }
@@ -87,17 +92,30 @@ namespace game {
     bool Engine::validateMove(coordinates c, coordinates newC) {
         if (!isActive) return false;
 
+        if (board.getPawnAt(newC))
+            return false;
+
+        // Sprawdz, czy ruch jest o jedno pole do przodu wzdluz przekatnych.
+        int dx = std::abs(newC.x - c.x);
+        int dy = std::abs(newC.y - c.y);
+
+        if (!((dx == 1 && dy == 1) &&
+              ((activePlayer == players[0] && newC.x > c.x) || (activePlayer == players[1] && newC.x < c.x)))) {
+            // Ruch o jedno pole do przodu po przekatnej jest dozwolony.
+            return false;
+        }
+
         return true;
     }
 
-/*    bool Engine::makeMove(coordinates c, coordinates newC) {
+    bool Engine::makeMove(coordinates c, coordinates newC) {
         if (!validateMove(c, newC)) return false;
 
         board.movePawn(c, newC);
         swapPlayer();
 
         return true;
-    }*/
+    }
 
     // TODO
     void Engine::endGame() {
@@ -105,7 +123,5 @@ namespace game {
 
         for (auto &player: players)
             player->getTimer()->stop();
-
-        std::cout << "Gracz " << winner->getName() << " wygral!\n";
     }
 } // core

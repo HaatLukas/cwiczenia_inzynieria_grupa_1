@@ -8,14 +8,13 @@
 #include <cmath>
 
 namespace game {
-    typedef std::array<std::array<Pawn, 10>, 10> board_t;
+    typedef std::array<std::array<std::optional<Pawn>, 10>, 10> board_t;
 
     struct coordinates {
         int x, y;
     };
 
     class Board {
-        int PlayerTurn;
         board_t board;
         sf::Texture whiteTxt;
         sf::Texture blackTxt;
@@ -28,13 +27,11 @@ namespace game {
 
     public:
         Board();
-        void Initialize();
-        bool IsValidMove(int startX, int startY, int endX, int endY);
-        void MovePiece(int startX, int startY, int endX, int endY);
-        void movePawn(int x, int y);
-        void Draw(sf::RenderTarget& target);
+        void movePiece(int startX, int startY, int endX, int endY);
+        void movePawn(coordinates c, coordinates newC);
+        void draw(sf::RenderTarget& target);
 
-        [[nodiscard]] Pawn getPawnAt(coordinates c) const {
+        [[nodiscard]] std::optional<Pawn> getPawnAt(coordinates c) const {
             return board[c.x][c.y];
         }
     };
