@@ -19,10 +19,6 @@ namespace game {
         sf::Texture whiteTxt;
         sf::Texture blackTxt;
         sf::Texture BoardTxt;
-        int selectedPieceX = -1;
-        int selectedPieceY = -1;
-        int targetX = -1;
-        int targetY = -1;
 
 
     public:
