@@ -5,8 +5,7 @@
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!");
-    Initialize();
+    sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!", sf::Style::Titlebar | sf::Style::Close);    Initialize();
 
     while (window.isOpen())
     {
