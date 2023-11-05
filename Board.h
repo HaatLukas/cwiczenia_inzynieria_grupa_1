@@ -14,6 +14,8 @@ int selectedPieceX = -1;
 int selectedPieceY = -1;
 int targetX = -1;
 int targetY = -1;
+sf::RectangleShape redSquare(sf::Vector2f(75, 75));  // Tworzenie kwadratu o wymiarach 75x75
+
 
 void Initialize()
 {
@@ -41,6 +43,7 @@ void Draw(sf::RenderTarget& target)
     blackTxt.loadFromFile("img/blackpwn.png");
     sf::Sprite blackPawn(blackTxt);
     target.draw(Back);
+    //redSquare.setFillColor(sf::Color::Red); 
 
     blackPawn.setScale(0.92, 0.92);
     whitePawn.setScale(0.92, 0.92);
@@ -60,4 +63,9 @@ void Draw(sf::RenderTarget& target)
             }
         }
     }
+}
+
+void markSelectedPawn(int posX, int posY)
+{
+
 }
