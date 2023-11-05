@@ -9,13 +9,29 @@ bool IsValidMove(int startX, int startY, int endX, int endY)
 
     // Sprawdz, czy ruch jest o jedno pole do przodu wzdluz przekatnych.
     int dx = std::abs(endX - startX);
-    int dy = std::abs(endY - startY);
+    
+    // dla bialego:
+    // x = 1
+    // y musi byc -1 
+    // dla czarnego
+    // x = 1
+    // y = 1 nie abs
 
-    if ((dx == 1 && dy == 1) &&
-        ((PlayerTurn == 1 && endX > startX) || (PlayerTurn == 2 && endX < startX)))
+    if(PlayerTurn == 1)
     {
-        // Ruch o jedno pole do przodu po przekatnej jest dozwolony.
-        return true;
+        int dy = (endY - startY);
+        if (dx == 1 && dy == -1)
+            return true;
+        else
+            return false;
+    }
+    else if(PlayerTurn == 2)
+    {
+        int dy = (endY - startY);
+        if (dx == 1 && dy == 1)
+            return true;
+        else
+            return false;
     }
 }
 
@@ -41,6 +57,7 @@ void InputHan(int x, int y)
             {
                 selectedPieceX = i;
                 selectedPieceY = j;
+                //markSelectedPawn(selectedPieceX, selectedPieceY);
             }
         }
         // Jesli wybrano juz warcaba, to sprobuj wykonac ruch lub bicie.
