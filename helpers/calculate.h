@@ -9,7 +9,7 @@
 
 namespace game {
 
-    coordinates calcCoord(coordinates c, int size);
+    coordinates calcCoord(coordinates c, float size);
 
 } // game
 

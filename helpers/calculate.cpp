@@ -6,8 +6,8 @@
 #include "calculate.h"
 
 namespace game {
-    coordinates calcCoord(coordinates c, int size) {
-        return {static_cast<int>(std::ceil((float) (c.x - size) / size)),
-                static_cast<int>(std::ceil((float) (c.y - size) / size))};
+    coordinates calcCoord(coordinates c, float size) {
+        return {static_cast<int>(std::ceil(((float) c.x - size) / size)),
+                static_cast<int>(std::ceil(((float) c.y - size) / size))};
     }
 } // game
