@@ -79,8 +79,10 @@ namespace game {
         activePlayer->getTimer()->stop();
 
         for (auto &player: players)
-            if (player != activePlayer)
+            if (player != activePlayer) {
                 activePlayer = player;
+                break;
+            }
 
         activePlayer->getTimer()->resume();
     }
