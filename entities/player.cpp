@@ -5,4 +5,4 @@
 #include "player.h"
 
 namespace game {
-} // core
+} // game

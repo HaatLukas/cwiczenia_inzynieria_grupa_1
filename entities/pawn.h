@@ -25,6 +25,6 @@ namespace game {
 
     };
 
-} // core
+} // game
 
 #endif //WARCABY_PAWN_H

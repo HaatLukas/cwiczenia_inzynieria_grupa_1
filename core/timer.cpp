@@ -36,4 +36,4 @@ namespace game {
     void Timer::resume() {
         paused = false;
     }
-} // core
+} // game

@@ -19,7 +19,12 @@ add_executable(warcaby main.cpp
         entities/board.cpp
         entities/board.h
         entities/pawn.cpp
-        entities/pawn.h)
+        entities/pawn.h
+        helpers/load_res.cpp
+        helpers/load_res.h
+        helpers/calculate.cpp
+        helpers/calculate.h
+        helpers/calculate.h)
 
 target_link_libraries(warcaby PRIVATE sfml-graphics)
 target_compile_features(warcaby PRIVATE cxx_std_17)

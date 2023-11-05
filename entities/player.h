@@ -31,6 +31,6 @@ namespace game {
 
     };
 
-} // core
+} // game
 
 #endif //WARCABY_PLAYER_H

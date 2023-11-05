@@ -1,21 +1,15 @@
 
 #include "board.h"
+#include "../helpers/load_res.h"
 
 
 namespace game {
     Board::Board() {
-        // 2 czarny // 1 bialy
-        for (int i = 0; i < 10; i += 2) {
-            board[i + 1][0] = Pawn(2);
-            board[i][1] = Pawn(2);
-            board[i + 1][2] = Pawn(2);
-            board[i][3] = Pawn(2);
-
-            board[i + 1][6] = Pawn(1);
-            board[i][7] = Pawn(1);
-            board[i + 1][8] = Pawn(1);
-            board[i][9] = Pawn(1);
-        }
+        for (int i = 0; i < 10; i += 2)
+            for (int j = 0; j < 4; j++) {
+                board[(j % 2 == 0 ? 1 : 0) + i][0 + j] = Pawn(2);
+                board[(j % 2 == 0 ? 1 : 0) + i][6 + j] = Pawn(1);
+            }
     }
 
     void Board::movePiece(coordinates c, coordinates newC) {
@@ -23,27 +17,19 @@ namespace game {
     }
 
     void Board::movePawn(coordinates c, coordinates newC) {
-        if (newC.x >= 0 && newC.x <= 800 && newC.y >= 0 && newC.y <= 800) {
-            // Wykonaj ruch
-            movePiece(c, newC);
-        }
+        movePiece(c, newC);
     }
 
     void Board::draw(sf::RenderTarget &target) {
-        sf::Texture whiteTxt;
-        sf::Texture blackTxt;
-        sf::Texture BoardTxt;
+        sf::Sprite back = loadSprite("img/boardpn.png");
+        sf::Sprite whitePawn = loadSprite("img/whitepwn.png");
+        sf::Sprite blackPawn = loadSprite("img/blackpwn.png");
 
-        BoardTxt.loadFromFile("img/boardpn.png");
-        sf::Sprite Back(BoardTxt);
-        whiteTxt.loadFromFile("img/whitepwn.png");
-        sf::Sprite whitePawn(whiteTxt);
-        blackTxt.loadFromFile("img/blackpwn.png");
-        sf::Sprite blackPawn(blackTxt);
-        target.draw(Back);
-
+        target.draw(back);
         blackPawn.setScale(0.92, 0.92);
         whitePawn.setScale(0.92, 0.92);
+
+        // TODO: refactor
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (board[i][j] && board[i][j].value().getColor() == 1) {
@@ -56,4 +42,4 @@ namespace game {
             }
         }
     }
-} // core
+} // game

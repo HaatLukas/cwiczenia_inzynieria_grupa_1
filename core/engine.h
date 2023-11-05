@@ -16,7 +16,7 @@ namespace game {
         Board board;
         Player *players[2];
         Player *activePlayer;
-        Player *winner;
+        Player *winner{};
         bool isActive;
 
         void checkPlayerTimers();
@@ -33,6 +33,8 @@ namespace game {
 
         void endGame();
 
+        void inputHandler(const sf::Event &event);
+
     public:
         explicit Engine(int gameTime = 120);
 
@@ -43,6 +45,6 @@ namespace game {
         }
     };
 
-} // core
+} // game
 
 #endif //WARCABY_ENGINE_H

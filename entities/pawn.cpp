@@ -6,4 +6,4 @@
 
 namespace game {
 
-} // core
+} // game

@@ -32,6 +32,6 @@ namespace game {
         }
     };
 
-} // core
+} // game
 
 #endif //WARCABY_BOARD_H
