@@ -14,11 +14,11 @@ namespace game {
         activePlayer = players[0];
     }
 
-    // TODO
     void Engine::run() {
         coordinates startCor = {-1, -1};
 
-        sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!", sf::Style::Titlebar | sf::Style::Close);
+        sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!",
+                                sf::Style::Titlebar | sf::Style::Close);
         startGame();
 
         while (window.isOpen()) {
@@ -46,16 +46,13 @@ namespace game {
                                             static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))});
                         startCor = {-1, -1};
                     }
-                    //score = Update();
-                    //std::cout << score << std::endl;
                 }
 
             }
-            window.clear();
 
+            window.clear();
             board.draw(window);
             window.display();
-
         }
     }
 
@@ -90,29 +87,21 @@ namespace game {
         activePlayer->getTimer()->resume();
     }
 
-    // TODO
     bool Engine::validateMove(coordinates c, coordinates newC) {
         if (!isActive) return false;
 
         if (board.getPawnAt(newC))
             return false;
 
-        // Sprawdz, czy ruch jest o jedno pole do przodu wzdluz przekatnych.
         int dx = std::abs(newC.x - c.x);
-        int dy = (newC.y - c.y);
+        int dy = newC.y - c.y;
         std::optional<Pawn> temp = board.getPawnAt(c);
+
         if (temp) {
-            if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
-                if (dx == 1 && dy == -1)
-                    return true;
-                else
-                    return false;
-            } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2) {
-                if (dx == 1 && dy == 1)
-                    return true;
-                else
-                    return false;
-            }
+            if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1)
+                return dx == 1 && dy == -1;
+            else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2)
+                return dx == 1 && dy == 1;
         }
         return false;
     }
