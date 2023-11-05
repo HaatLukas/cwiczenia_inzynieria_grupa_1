@@ -2,7 +2,7 @@
 #include "../helpers/calculate.h"
 
 namespace game {
-    Engine::Engine(int gameTime) : players(), isActive(false) {
+    Engine::Engine(int gameTime) : players(), isActive(false), winner() {
         players[0] = new Player("1");
         players[1] = new Player("2");
 

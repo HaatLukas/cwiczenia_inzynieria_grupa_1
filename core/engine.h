@@ -16,7 +16,7 @@ namespace game {
         Board board;
         Player *players[2];
         Player *activePlayer;
-        Player *winner{};
+        Player *winner;
         bool isActive;
 
         void checkPlayerTimers();

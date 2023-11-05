@@ -10,10 +10,11 @@ namespace game {
 
     class Pawn {
         int color;
-        bool isQueen = false;
+        bool isSelected;
+        bool isQueen;
 
     public:
-        explicit Pawn(int color = 0): color(color) {}
+        explicit Pawn(int color = 0): color(color), isQueen(false), isSelected(false) {}
 
         [[nodiscard]] int getColor() const {
             return color;
