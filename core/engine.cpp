@@ -38,9 +38,12 @@ namespace game {
                     if (startCor.x == -1 || startCor.y == -1) {
                         startCor = {static_cast<int>(std::ceil((float) (mouse.x - 80) / 80)),
                                     static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))};
+
+                        if (!board.getPawnAt(startCor))
+                            startCor = {-1, -1};
                     } else {
                         makeMove(startCor, {static_cast<int>(std::ceil((float) (mouse.x - 80) / 80)),
-                                                         static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))});
+                                            static_cast<int>(std::ceil((float) (mouse.y - 80) / 80))});
                         startCor = {-1, -1};
                     }
                     //score = Update();
@@ -98,7 +101,7 @@ namespace game {
         int dx = std::abs(newC.x - c.x);
         int dy = (newC.y - c.y);
         std::optional<Pawn> temp = board.getPawnAt(c);
-        if(temp) {
+        if (temp) {
             if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
                 if (dx == 1 && dy == -1)
                     return true;
