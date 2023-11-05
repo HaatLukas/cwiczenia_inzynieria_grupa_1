@@ -34,7 +34,7 @@ namespace game {
         void endGame();
 
     public:
-        explicit Engine(int gameTime = 60);
+        explicit Engine(int gameTime = 120);
 
         void run();
 

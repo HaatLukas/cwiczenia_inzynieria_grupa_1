@@ -1,7 +1,3 @@
-//
-// Created by david on 26.10.2023.
-//
-
 #include <cmath>
 #include "engine.h"
 
@@ -22,7 +18,7 @@ namespace game {
     void Engine::run() {
         coordinates startCor = {-1, -1};
 
-        sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!");
+        sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!", sf::Style::Titlebar | sf::Style::Close);
         startGame();
 
         while (window.isOpen()) {
@@ -98,15 +94,22 @@ namespace game {
 
         // Sprawdz, czy ruch jest o jedno pole do przodu wzdluz przekatnych.
         int dx = std::abs(newC.x - c.x);
-        int dy = std::abs(newC.y - c.y);
-
-        if (!((dx == 1 && dy == 1) &&
-              ((activePlayer == players[0] && newC.x > c.x) || (activePlayer == players[1] && newC.x < c.x)))) {
-            // Ruch o jedno pole do przodu po przekatnej jest dozwolony.
-            return false;
+        int dy = (newC.y - c.y);
+        std::optional<Pawn> temp = board.getPawnAt(c);
+        if(temp) {
+            if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
+                if (dx == 1 && dy == -1)
+                    return true;
+                else
+                    return false;
+            } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2) {
+                if (dx == 1 && dy == 1)
+                    return true;
+                else
+                    return false;
+            }
         }
-
-        return true;
+        return false;
     }
 
     bool Engine::makeMove(coordinates c, coordinates newC) {

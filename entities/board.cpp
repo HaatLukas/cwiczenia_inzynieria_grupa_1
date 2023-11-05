@@ -47,10 +47,10 @@ namespace game {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 if (board[i][j] && board[i][j].value().getColor() == 1) {
-                    whitePawn.setPosition(sf::Vector2f(80 * i, 80 * j));
+                    whitePawn.setPosition(sf::Vector2f(81 * i, 81 * j));
                     target.draw(whitePawn);
                 } else if (board[i][j] && board[i][j].value().getColor() == 2) {
-                    blackPawn.setPosition(sf::Vector2f(80 * i, 80 * j));
+                    blackPawn.setPosition(sf::Vector2f(81 * i, 81 * j));
                     target.draw(blackPawn);
                 }
             }
