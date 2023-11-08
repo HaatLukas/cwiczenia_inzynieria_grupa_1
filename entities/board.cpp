@@ -20,7 +20,7 @@ namespace game {
         movePiece(c, newC);
     }
 
-    void Board::draw(sf::RenderTarget &target, std::string val1, std::string val2) {
+    void Board::draw(sf::RenderTarget &target, const std::string& val1, const std::string& val2) {
         sf::Sprite back = loadSprite("img/board.png");
         sf::Sprite whitePawn = loadSprite("img/blackpwn.png");
         sf::Sprite blackPawn = loadSprite("img/whitepwn.png");

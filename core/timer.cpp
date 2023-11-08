@@ -10,8 +10,9 @@ namespace game {
         active = true;
         std::thread t([=]() {
             while (active.load()) {
+                if (paused.load()) continue;
                 std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-                if (!active.load() || paused.load()) return;
+                if (!active.load()) return;
                 fc();
             }
         });

@@ -71,12 +71,6 @@ namespace game {
         activePlayer->getTimer()->resume();
     }
 
-    std::string timerToString(Timer& timer)
-    {
-        int temp = timer.getValue();
-        return std::to_string(temp);
-    }
-
     bool Engine::validateMove(coordinates c, coordinates newC) {
         if (!isActive) return false;
 
@@ -98,10 +92,10 @@ namespace game {
 
     bool Engine::makeMove(coordinates c, coordinates newC) {
         if (!validateMove(c, newC)){
-            board.getPawnAt(c)->setFalseVal();
+            board.getPawnAt(c)->setSelected(true);
             return false;
         }
-        board.getPawnAt(c)->setFalseVal();
+        board.getPawnAt(c)->setSelected(false);
         board.movePawn(c, newC);
         swapPlayer();
 
@@ -127,7 +121,7 @@ namespace game {
             if (!board.getPawnAt(startCor))
                 startCor = {-1, -1};
             else if(board.getPawnAt(startCor).value().getColor() == std::stoi(activePlayer->getName()))
-                board.getPawnAt(startCor)->setTrueVal();
+                board.getPawnAt(startCor)->setSelected(true);
         } else {
             makeMove(startCor, calcCoord({mouse.x, mouse.y}, 65));
             startCor = {-1, -1};

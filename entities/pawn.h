@@ -24,12 +24,8 @@ namespace game {
             color = newColor;
         }
 
-        void setTrueVal(){
-            this->isSelected = true;
-        }
-
-        void setFalseVal(){
-            this->isSelected = false;
+        void setSelected(bool selected){
+            this->isSelected = selected;
         }
 
         [[nodiscard]] bool selectedValue() const

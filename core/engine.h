@@ -31,8 +31,6 @@ namespace game {
 
         void inputHandler(const sf::Event &event);
 
-        std::string timerToString(Timer& timer);
-
     public:
         explicit Engine(int gameTime = 120);
 
