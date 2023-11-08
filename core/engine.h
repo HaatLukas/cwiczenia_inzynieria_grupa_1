@@ -1,7 +1,3 @@
-//
-// Created by david on 26.10.2023.
-//
-
 #ifndef WARCABY_ENGINE_H
 #define WARCABY_ENGINE_H
 
@@ -34,6 +30,8 @@ namespace game {
         void endGame();
 
         void inputHandler(const sf::Event &event);
+
+        std::string timerToString(Timer& timer);
 
     public:
         explicit Engine(int gameTime = 120);

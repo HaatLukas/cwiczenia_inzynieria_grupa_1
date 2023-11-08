@@ -15,7 +15,7 @@ namespace game {
     }
 
     void Engine::run() {
-        sf::RenderWindow window(sf::VideoMode(800, 800), "warcaby!",
+        sf::RenderWindow window(sf::VideoMode(1000, 800), "warcaby!",
                                 sf::Style::Titlebar | sf::Style::Close);
 
         startGame();
@@ -34,7 +34,8 @@ namespace game {
             }
 
             window.clear();
-            board.draw(window);
+            board.draw(window, std::to_string(players[0]->getTimer()->getValue()),
+                       std::to_string(players[1]->getTimer()->getValue()));
             window.display();
         }
     }
@@ -70,6 +71,12 @@ namespace game {
         activePlayer->getTimer()->resume();
     }
 
+    std::string timerToString(Timer& timer)
+    {
+        int temp = timer.getValue();
+        return std::to_string(temp);
+    }
+
     bool Engine::validateMove(coordinates c, coordinates newC) {
         if (!isActive) return false;
 
@@ -90,8 +97,11 @@ namespace game {
     }
 
     bool Engine::makeMove(coordinates c, coordinates newC) {
-        if (!validateMove(c, newC)) return false;
-
+        if (!validateMove(c, newC)){
+            board.getPawnAt(c)->setFalseVal();
+            return false;
+        }
+        board.getPawnAt(c)->setFalseVal();
         board.movePawn(c, newC);
         swapPlayer();
 
@@ -110,14 +120,16 @@ namespace game {
         static coordinates startCor = {-1, -1};
         auto mouse = event.mouseButton;
 
+
         if (startCor.x == -1 || startCor.y == -1) {
-            startCor = calcCoord({mouse.x, mouse.y}, 80);
+            startCor = calcCoord({mouse.x, mouse.y}, 65);
 
             if (!board.getPawnAt(startCor))
                 startCor = {-1, -1};
+            else if(board.getPawnAt(startCor).value().getColor() == std::stoi(activePlayer->getName()))
+                board.getPawnAt(startCor)->setTrueVal();
         } else {
-            makeMove(startCor, calcCoord({mouse.x, mouse.y}, 80));
-
+            makeMove(startCor, calcCoord({mouse.x, mouse.y}, 65));
             startCor = {-1, -1};
         }
     }

@@ -24,6 +24,19 @@ namespace game {
             color = newColor;
         }
 
+        void setTrueVal(){
+            this->isSelected = true;
+        }
+
+        void setFalseVal(){
+            this->isSelected = false;
+        }
+
+        [[nodiscard]] bool selectedValue() const
+        {
+            return isSelected;
+        }
+
     };
 
 } // game
