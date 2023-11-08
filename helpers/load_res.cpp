@@ -4,7 +4,6 @@
 
 #include "load_res.h"
 #include "SFML/Graphics/Texture.hpp"
-#include <memory>
 
 namespace game {
     sf::Sprite loadSprite(const std::string &filename) {
