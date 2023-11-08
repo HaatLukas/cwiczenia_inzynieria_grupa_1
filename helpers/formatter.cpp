@@ -15,10 +15,11 @@ namespace game {
 
         str.append(std::to_string(min));
         str.append(":");
-        str.append(std::to_string(seconds));
 
         if (seconds < 10)
             str.append("0");
+
+        str.append(std::to_string(seconds));
 
         return str;
     }
