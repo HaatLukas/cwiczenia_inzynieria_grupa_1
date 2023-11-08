@@ -11,6 +11,8 @@ namespace game {
         auto *txt = new sf::Texture();
 
         txt->loadFromFile(filename);
+        txt->setSmooth(true);
+
         sf::Sprite temp(*txt);
 
         return temp;
