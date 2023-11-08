@@ -17,6 +17,13 @@ namespace game {
         activePlayer = players[0];
     }
 
+    void Engine::reDraw(sf::RenderWindow &window) {
+        window.clear();
+        board.draw(window, formatTime(players[0]->getTimer()->getValue()),
+                   formatTime(players[1]->getTimer()->getValue()));
+        window.display();
+    }
+
     void Engine::run() {
         sf::RenderWindow window(sf::VideoMode(1000, 800), "warcaby!",
                                 sf::Style::Titlebar | sf::Style::Close);
@@ -36,10 +43,7 @@ namespace game {
                     inputHandler(event);
             }
 
-            window.clear();
-            board.draw(window, formatTime(players[0]->getTimer()->getValue()),
-                       formatTime(players[1]->getTimer()->getValue()));
-            window.display();
+            reDraw(window);
         }
     }
 
@@ -127,6 +131,7 @@ namespace game {
         } else {
             board.getPawnAt(startCoord)->setSelected(false);
             makeMove(startCoord, calcCoord({mouse.x, mouse.y}, 65));
+
             startCoord = {-1, -1};
         }
     }

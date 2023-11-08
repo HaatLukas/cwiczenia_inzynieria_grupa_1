@@ -14,7 +14,7 @@ namespace game {
         std::atomic<bool> active{false}, paused{true};
         std::atomic<int> value{0};
 
-        void setInterval(const std::function<void()> &fc, int interval);
+        void setInterval(const std::function<void()> &fc);
 
     public:
         void init();

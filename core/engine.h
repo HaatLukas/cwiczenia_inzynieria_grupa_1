@@ -15,6 +15,8 @@ namespace game {
         Player *winner;
         bool isActive;
 
+        void reDraw(sf::RenderWindow &window);
+
         void checkPlayerTimers();
 
         void timeEnded(const Player *lost);
@@ -35,10 +37,6 @@ namespace game {
         explicit Engine(int gameTime = 120);
 
         void run();
-
-        [[nodiscard]] Board getBoard() const {
-            return board;
-        }
     };
 
 } // game

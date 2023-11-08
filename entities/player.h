@@ -24,11 +24,6 @@ namespace game {
         [[nodiscard]] Timer *getTimer() {
             return &timer;
         }
-
-        [[nodiscard]] std::string getName() const {
-            return name;
-        }
-
     };
 
 } // game
