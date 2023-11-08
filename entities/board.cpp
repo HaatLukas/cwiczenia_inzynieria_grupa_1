@@ -20,7 +20,7 @@ namespace game {
         movePiece(c, newC);
     }
 
-    void Board::draw(sf::RenderTarget &target, const std::string& val1, const std::string& val2) {
+    void Board::draw(sf::RenderTarget &target, const std::string& timerVal1, const std::string& timerVal2) {
         sf::Sprite back = loadSprite("img/board.png");
         sf::Sprite whitePawn = loadSprite("img/blackpwn.png");
         sf::Sprite blackPawn = loadSprite("img/whitepwn.png");
@@ -62,8 +62,8 @@ namespace game {
         //drawing timers
         timer1.setPosition(sf::Vector2f(768, 452));
         timer2.setPosition(sf::Vector2f(768, 77));
-        timer1.setString(val1);
-        timer2.setString(val2);
+        timer1.setString(timerVal1);
+        timer2.setString(timerVal2);
         target.draw(timer1);
         target.draw(timer2);
     }

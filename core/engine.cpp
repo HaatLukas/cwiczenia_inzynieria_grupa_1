@@ -1,5 +1,6 @@
 #include "engine.h"
 #include "../helpers/calculate.h"
+#include "../helpers/formatter.h"
 
 namespace game {
     Engine::Engine(int gameTime) : players(), isActive(false), winner() {
@@ -36,8 +37,8 @@ namespace game {
             }
 
             window.clear();
-            board.draw(window, std::to_string(players[0]->getTimer()->getValue()),
-                       std::to_string(players[1]->getTimer()->getValue()));
+            board.draw(window, formatTime(players[0]->getTimer()->getValue()),
+                       formatTime(players[1]->getTimer()->getValue()));
             window.display();
         }
     }
