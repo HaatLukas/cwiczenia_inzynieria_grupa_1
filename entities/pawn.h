@@ -20,10 +20,6 @@ namespace game {
             return color;
         }
 
-        void setColor(int newColor) {
-            color = newColor;
-        }
-
         void setSelected(bool selected){
             this->isSelected = selected;
         }

@@ -27,14 +27,14 @@ namespace game {
         sf::Sprite selectedB = loadSprite("img/selected.png");
 
         sf::Font font;
-        font.loadFromFile("fonts/KoHo-Regular.ttf");
+        font.loadFromFile("fonts/KoHo-Bold.ttf");
         sf::Text timer1;
         timer1.setFont(font);
         sf::Text timer2;
         timer1.setFont(font);
         timer2.setFont(font);
-        timer1.setCharacterSize(24);
-        timer2.setCharacterSize(24);
+        timer1.setCharacterSize(64);
+        timer2.setCharacterSize(64);
 
         target.draw(back);
         blackPawn.setScale(0.4514, 0.4514);
@@ -59,8 +59,8 @@ namespace game {
             }
         }
         //drawing timers
-        timer1.setPosition(sf::Vector2f(768, 482));
-        timer2.setPosition(sf::Vector2f(768, 117));
+        timer1.setPosition(sf::Vector2f(768, 452));
+        timer2.setPosition(sf::Vector2f(768, 77));
         timer1.setString(val1);
         timer2.setString(val2);
         target.draw(timer1);
