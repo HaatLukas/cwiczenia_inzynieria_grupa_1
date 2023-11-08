@@ -6,27 +6,34 @@
 #define WARCABY_PAWN_H
 
 
+#include "player.h"
+
 namespace game {
 
     class Pawn {
+        Player *owner;
         int color;
-        bool isSelected;
+        bool selected;
         bool isQueen;
 
     public:
-        explicit Pawn(int color = 0): color(color), isQueen(false), isSelected(false) {}
+        explicit Pawn(Player *owner, int color): color(color), isQueen(false), selected(false), owner(owner) {}
 
         [[nodiscard]] int getColor() const {
             return color;
         }
 
-        void setSelected(bool selected){
-            this->isSelected = selected;
+        void setSelected(bool val){
+            selected = val;
         }
 
-        [[nodiscard]] bool selectedValue() const
+        [[nodiscard]] Player *getOwner() const {
+            return owner;
+        }
+
+        [[nodiscard]] bool isSelected() const
         {
-            return isSelected;
+            return selected;
         }
 
     };

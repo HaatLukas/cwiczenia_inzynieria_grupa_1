@@ -4,11 +4,11 @@
 
 
 namespace game {
-    Board::Board() {
+    Board::Board(Player *player1, Player *player2) {
         for (int i = 0; i < 10; i += 2)
             for (int j = 0; j < 4; j++) {
-                board[(j % 2 == 0 ? 1 : 0) + i][0 + j] = Pawn(2);
-                board[(j % 2 == 0 ? 1 : 0) + i][6 + j] = Pawn(1);
+                board[(j % 2 == 0 ? 1 : 0) + i][6 + j] = Pawn(player1, 1);
+                board[(j % 2 == 0 ? 1 : 0) + i][0 + j] = Pawn(player2, 2);
             }
     }
 
@@ -28,9 +28,10 @@ namespace game {
 
         sf::Font font;
         font.loadFromFile("fonts/KoHo-Bold.ttf");
+
         sf::Text timer1;
-        timer1.setFont(font);
         sf::Text timer2;
+
         timer1.setFont(font);
         timer2.setFont(font);
         timer1.setCharacterSize(64);
@@ -52,7 +53,7 @@ namespace game {
                     blackPawn.setPosition(sf::Vector2f(65 + i * 1.2 +(65 * i), 65 + j * 2.2 +(65 * j)));
                     target.draw(blackPawn);
                 }
-                if(board[i][j].has_value() && board[i][j].value().selectedValue()) {
+                if(board[i][j] && board[i][j]->isSelected()) {
                     selectedB.setPosition(sf::Vector2f(65 + 1.2 * i + (65 * i), 65 + j * 2 + (65 * j)));
                     target.draw(selectedB);
                 }

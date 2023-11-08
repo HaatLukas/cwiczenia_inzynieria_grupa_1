@@ -6,6 +6,7 @@
 #include <iostream>
 #include "pawn.h"
 #include "SFML/Graphics.hpp"
+#include "player.h"
 #include <optional>
 
 namespace game {
@@ -20,7 +21,9 @@ namespace game {
 
 
     public:
-        Board();
+        Board() = default;
+
+        Board(Player *player1, Player *player2);
 
         void movePiece(coordinates c, coordinates newC);
 

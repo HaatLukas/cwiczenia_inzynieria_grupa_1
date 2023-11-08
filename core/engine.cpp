@@ -6,6 +6,8 @@ namespace game {
         players[0] = new Player("1");
         players[1] = new Player("2");
 
+        board = Board(players[0], players[1]);
+
         for (auto &player: players) {
             player->getTimer()->setValue(gameTime);
             player->getTimer()->init();
@@ -74,7 +76,7 @@ namespace game {
     bool Engine::validateMove(coordinates c, coordinates newC) {
         if (!isActive) return false;
 
-        std::optional<Pawn> temp = board.getPawnAt(c);
+        auto temp = board.getPawnAt(c);
 
         if (board.getPawnAt(newC) && temp)
             return false;
@@ -91,11 +93,8 @@ namespace game {
     }
 
     bool Engine::makeMove(coordinates c, coordinates newC) {
-        if (!validateMove(c, newC)){
-            board.getPawnAt(c)->setSelected(true);
-            return false;
-        }
-        board.getPawnAt(c)->setSelected(false);
+        if (!validateMove(c, newC)) return false;
+
         board.movePawn(c, newC);
         swapPlayer();
 
@@ -111,20 +110,23 @@ namespace game {
     }
 
     void Engine::inputHandler(const sf::Event &event) {
-        static coordinates startCor = {-1, -1};
+        static coordinates startCoord = {-1, -1};
         auto mouse = event.mouseButton;
+        coordinates temp = calcCoord({mouse.x, mouse.y}, 65);
+        auto pawn = board.getPawnAt(temp);
 
+        if (pawn) {
+            if (startCoord.x != -1 && startCoord.y != -1)
+                board.getPawnAt(startCoord)->setSelected(false);
 
-        if (startCor.x == -1 || startCor.y == -1) {
-            startCor = calcCoord({mouse.x, mouse.y}, 65);
+            startCoord = temp;
 
-            if (!board.getPawnAt(startCor))
-                startCor = {-1, -1};
-            else if(board.getPawnAt(startCor).value().getColor() == std::stoi(activePlayer->getName()))
-                board.getPawnAt(startCor)->setSelected(true);
+            if (pawn->getOwner() == activePlayer)
+                board.getPawnAt(temp)->setSelected(true);
         } else {
-            makeMove(startCor, calcCoord({mouse.x, mouse.y}, 65));
-            startCor = {-1, -1};
+            board.getPawnAt(startCoord)->setSelected(false);
+            makeMove(startCoord, calcCoord({mouse.x, mouse.y}, 65));
+            startCoord = {-1, -1};
         }
     }
 } // game
