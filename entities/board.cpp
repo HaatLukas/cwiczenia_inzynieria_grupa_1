@@ -27,7 +27,7 @@ namespace game {
         sf::Sprite blackPawn = loadSprite("img/blackpwn.png");
         sf::Sprite selectedB = loadSprite("img/selected.png");
 
-        selectedB.setScale(0.95, 0.95);
+        selectedB.setScale(1, 1.025);
 
         sf::Font font;
         font.loadFromFile("fonts/KoHo-Bold.ttf");
@@ -46,18 +46,15 @@ namespace game {
         for (int i = 0; i < 10; i++)
             for (int j = 0; j < 10; j++) {
                 if (board[i][j] && board[i][j]->getColor() == 1) {
-                    blackPawn.setPosition(sf::Vector2f(calcPos(66, 1.2, i),
-                                                       calcPos(66, 2.2, j)));
+                    blackPawn.setPosition(sf::Vector2f(69 + 1.3 * i + (65 * i), 69 + j * 2.3 + (65 * j)));
                     target.draw(blackPawn);
                 } else if (board[i][j] && board[i][j]->getColor() == 2) {
-                    whitePawn.setPosition(sf::Vector2f(calcPos(66, 1.2, i),
-                                                       calcPos(66, 2.2, j)));
+                    whitePawn.setPosition(sf::Vector2f(69 + i * 1.3 +(65 * i), 69 + j * 2.3 +(65 * j)));
                     target.draw(whitePawn);
                 }
 
                 if (board[i][j] && board[i][j]->isSelected()) {
-                    selectedB.setPosition(sf::Vector2f(calcPos(66, 1.2, i),
-                                                       calcPos(66, 2, j)));
+                    selectedB.setPosition(sf::Vector2f(65 + 1.1 * i + (65 * i), 65 + j * 2 + (65 * j)));
                     target.draw(selectedB);
                 }
             }
