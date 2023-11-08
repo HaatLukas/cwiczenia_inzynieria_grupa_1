@@ -113,7 +113,7 @@ namespace game {
     void Engine::inputHandler(const sf::Event &event) {
         static coordinates startCoord = {-1, -1};
         auto mouse = event.mouseButton;
-        coordinates temp = calcCoord({mouse.x, mouse.y}, 65);
+        coordinates temp = calcCoord({mouse.x, mouse.y}, 66);
         auto pawn = board.getPawnAt(temp);
 
         if (pawn) {
