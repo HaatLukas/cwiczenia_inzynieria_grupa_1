@@ -24,6 +24,8 @@ namespace game {
         sf::Sprite back = loadSprite("img/board.png");
         sf::Sprite whitePawn = loadSprite("img/whitepwn.png");
         sf::Sprite blackPawn = loadSprite("img/blackpwn.png");
+        sf::Sprite whiteQueen = loadSprite("img/whiteQ.png");
+        sf::Sprite blackQueen = loadSprite("img/blackQ.png");
         sf::Sprite selectedB = loadSprite("img/selected.png");
 
         selectedB.setScale(1, 1.025);
@@ -41,20 +43,14 @@ namespace game {
 
         target.draw(back);
 
-        for (int i = 0; i < 10; i++)
-            for (int j = 0; j < 10; j++) {
-                if (board[i][j] && board[i][j]->getColor() == 1) {
-                    blackPawn.setPosition(sf::Vector2f(69 + 1.3 * i + (65 * i), 69 + j * 2.3 + (65 * j)));
-                    target.draw(blackPawn);
-                } else if (board[i][j] && board[i][j]->getColor() == 2) {
-                    whitePawn.setPosition(sf::Vector2f(69 + i * 1.3 + (65 * i), 69 + j * 2.3 + (65 * j)));
-                    target.draw(whitePawn);
-                }
-
-                if (board[i][j] && board[i][j]->isSelected()) {
-                    selectedB.setPosition(sf::Vector2f(65 + 1.1 * i + (65 * i), 65 + j * 2 + (65 * j)));
-                    target.draw(selectedB);
-                }
+        for(int i = 0; i < 10; i++)
+            for(int j = 0; j < 10; j++){
+                if(board[i][j] && board[i][j]->getColor() == 1)
+                    drawPawn(board[i][j]->queenStatus(), i, j, whitePawn, whiteQueen, target);
+                else if(board[i][j] && board[i][j]->getColor() == 2)
+                    drawPawn(board[i][j]->queenStatus(), i, j, blackPawn, blackQueen, target);
+                if(board[i][j] && board[i][j]->isSelected())
+                    drawSelected(i, j, selectedB, target);
             }
 
         timer1.setPosition(sf::Vector2f(768, 452));

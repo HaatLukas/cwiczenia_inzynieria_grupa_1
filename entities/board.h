@@ -6,7 +6,9 @@
 #include "pawn.h"
 #include "SFML/Graphics.hpp"
 #include "player.h"
+#include "../helpers/draw_helper.h"
 #include <optional>
+
 
 namespace game {
     typedef std::array<std::array<std::optional<Pawn>, 10>, 10> board_t;
