@@ -101,9 +101,20 @@ namespace game {
         if (!validateMove(c, newC)) return false;
 
         board.movePawn(c, newC);
+        queenCheck(newC, *board.getPawnAt(newC));
         swapPlayer();
 
         return true;
+    }
+
+    void Engine::queenCheck(coordinates c, Pawn& temp){
+        if(temp.queenStatus())
+            return;
+
+        for(int i = 0; i < 5; i++)
+            if(temp.getColor() == 1 && c.x == 1 + (i * 2) && c.y == 0
+                    || temp.getColor() == 2 && c.x == i * 2 && c.y == 9)
+                temp.setQueenStatus(true);
     }
 
     // TODO

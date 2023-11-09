@@ -29,6 +29,8 @@ namespace game {
 
         bool makeMove(coordinates c, coordinates newC);
 
+        void queenCheck(coordinates c, Pawn& temp);
+
         void endGame();
 
         void inputHandler(const sf::Event &event);
