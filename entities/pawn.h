@@ -27,12 +27,20 @@ namespace game {
             selected = val;
         }
 
+        void setQueenStatus(bool val){
+            isQueen = val;
+        }
+
         [[nodiscard]] Player *getOwner() const {
             return owner;
         }
 
         [[nodiscard]] bool isSelected() const {
             return selected;
+        }
+
+        [[nodiscard]] bool queenStatus() const{
+            return isQueen;
         }
 
     };
