@@ -18,7 +18,6 @@ namespace game {
     class Board {
         board_t board;
 
-
     public:
         Board() = default;
 

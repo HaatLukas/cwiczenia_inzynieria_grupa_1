@@ -17,13 +17,13 @@ namespace game {
         bool isQueen;
 
     public:
-        explicit Pawn(Player *owner, int color): color(color), isQueen(false), selected(false), owner(owner) {}
+        explicit Pawn(Player *owner, int color) : color(color), isQueen(false), selected(false), owner(owner) {}
 
         [[nodiscard]] int getColor() const {
             return color;
         }
 
-        void setSelected(bool val){
+        void setSelected(bool val) {
             selected = val;
         }
 
@@ -31,8 +31,7 @@ namespace game {
             return owner;
         }
 
-        [[nodiscard]] bool isSelected() const
-        {
+        [[nodiscard]] bool isSelected() const {
             return selected;
         }
 
