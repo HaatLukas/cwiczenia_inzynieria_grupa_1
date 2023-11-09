@@ -27,6 +27,8 @@ add_executable(warcaby main.cpp
         helpers/calculate.h
         helpers/formatter.cpp
         helpers/formatter.h
+        helpers/draw_helper.cpp
+        helpers/draw_helper.h
 )
 
 target_link_libraries(warcaby PRIVATE sfml-graphics)
