@@ -2,8 +2,8 @@
 // Created by Oski on 09.11.2023.
 //
 
-#ifndef WARCABY_CALCULATE_H
-#define WARCABY_CALCULATE_H
+#ifndef WARCABY_DRAW_HELPER_H
+#define WARCABY_DRAW_HELPER_H
 
 #include "../entities/board.h"
 #include "../entities/pawn.h"
@@ -15,4 +15,4 @@ namespace game {
 
 } // game
 
-#endif //WARCABY_CALCULATE_H
+#endif //WARCABY_DRAW_HELPER_H
