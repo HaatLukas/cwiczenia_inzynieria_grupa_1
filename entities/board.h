@@ -25,6 +25,8 @@ namespace game {
 
         Board(Player *player1, Player *player2);
 
+        void deletePawn(coordinates c);
+
         void movePiece(coordinates c, coordinates newC);
 
         void movePawn(coordinates c, coordinates newC);

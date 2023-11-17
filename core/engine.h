@@ -31,6 +31,8 @@ namespace game {
 
         void queenCheck(coordinates c, Pawn& temp);
 
+        void pawnCapture(coordinates c);
+
         void endGame();
 
         void inputHandler(const sf::Event &event);

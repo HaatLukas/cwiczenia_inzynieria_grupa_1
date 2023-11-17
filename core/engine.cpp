@@ -89,10 +89,19 @@ namespace game {
         int dx = std::abs(newC.x - c.x);
         int dy = newC.y - c.y;
 
-        if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1)
-            return dx == 1 && dy == -1;
-        else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2)
-            return dx == 1 && dy == 1;
+        if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
+            if (dx == 2 && dy == -2) {
+                board.deletePawn({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1});
+                return true;
+            } else
+                return dx == 1 && dy == -1;
+        } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2){
+            if (dx == 2 && dy == 2) {
+                board.deletePawn({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1});
+                return true;
+            } else
+                return dx == 1 && dy == 1;
+        }
 
         return false;
     }
@@ -116,6 +125,10 @@ namespace game {
                     || temp.getColor() == 2 && c.x == i * 2 && c.y == 9)
                 temp.setQueenStatus(true);
     }
+
+//    void Engine::pawnCapture(game::coordinates c) {
+//        if(c)
+//    }
 
     // TODO
     void Engine::endGame() {

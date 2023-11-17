@@ -12,6 +12,10 @@ namespace game {
             }
     }
 
+    void Board::deletePawn(coordinates c){
+        board[c.x][c.y].reset();
+    }
+
     void Board::movePiece(coordinates c, coordinates newC) {
         board[c.x][c.y].swap(board[newC.x][newC.y]);
     }
