@@ -1,0 +1,33 @@
+GRASP(ogólny) 
+1. Nie powtarzamy się, 
+2. Trzymamy się zasadsy KISS, ponieważ rozbliśmy wszystko na mniejsze
+prostsze części.
+3. Minimisie Coupling uważamy, że nasz projekt po części nie spełnia
+tej reguły, ponieważ występuje wiele zależności między klasami oraz
+nie jest łatwo zmienić jedną rzecz bez konsekwencji.
+4. Nasz projekt spełnia założenia ADP, ponieważ nie mamy zapętleń zależności.
+5. To zależy więc chyba nie
+6. Interfejsów nie ma, ponieważ w tak małym projekcie nie widzieliśmy miejsca na nie.
+Przy pakietach łatwych do zmiany zastosowaliśmy maksymalną konkretoność.
+
+SOLID:
+1. Nasz projekt spełnia zasadę Single Responsibility, ponieważ każda z klas 
+odpowiada za wykonanie jednego konkretnego zadania.
+2. Nasz projekt był tworzony z myślą o łatwą implementacje nowych 
+funkcjonalności, ponieważ możemy coś dodać bez zmieniania innych rzeczy pod to.
+Natomiast nie spełnia zasadsy polimorfizmu, ponieważ żadna z klas nie dziedziczy
+bo nasz projekt jest za mały.
+3. Nie mamy
+4. Nie mamy 
+5. Moduły nie są zależne w kontekście zasady Dependency Inversion.
+
+GRASP(szczegółowy):
+-(EKSPERT) - spełnione
+-(TWÓRCA) - OK
+-(KONTROLER) - OK
+-(NISKIE SPRZĘŻENIE) - jest OK
+-(WYSOKA SPÓJNOŚĆ) - również jest OK
+-(POLIMORFIZM) - nie OK
+-(CZYSTY WYMYSŁ) - nie wiem 
+-(POŚREDNICTWO) - Mamy!
+-(OCHRONA ZMIENNOŚCI) - Mamy!
