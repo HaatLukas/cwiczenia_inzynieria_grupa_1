@@ -86,18 +86,27 @@ namespace game {
         if (board.getPawnAt(newC) && temp)
             return false;
 
+        if((newC.x < 0 || newC.x > 9) || (newC.y > 9 || newC.y < 0))
+            return false;
+
         int dx = std::abs(newC.x - c.x);
         int dy = newC.y - c.y;
 
         if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
             if (dx == 2 && dy == -2) {
-                board.deletePawn({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1});
+                if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1})->getColor() == 2)
+                    board.deletePawn({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1});
+                else if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1})->getColor() == 1)
+                    return false;
                 return true;
             } else
                 return dx == 1 && dy == -1;
         } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2){
             if (dx == 2 && dy == 2) {
-                board.deletePawn({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1});
+                if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 1)
+                    board.deletePawn({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1});
+                else if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 2)
+                    return false;
                 return true;
             } else
                 return dx == 1 && dy == 1;
