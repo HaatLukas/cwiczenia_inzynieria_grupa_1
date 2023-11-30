@@ -25,12 +25,12 @@ namespace game {
     }
 
     void Board::draw(sf::RenderTarget &target, const std::string &timerVal1, const std::string &timerVal2) {
-        sf::Sprite back = loadSprite("img/board.png");
-        sf::Sprite whitePawn = loadSprite("img/whitepwn.png");
-        sf::Sprite blackPawn = loadSprite("img/blackpwn.png");
-        sf::Sprite whiteQueen = loadSprite("img/whiteQ.png");
-        sf::Sprite blackQueen = loadSprite("img/blackQ.png");
-        sf::Sprite selectedB = loadSprite("img/selected.png");
+        static sf::Sprite back = loadSprite("img/board.png");
+        static sf::Sprite whitePawn = loadSprite("img/whitepwn.png");
+        static sf::Sprite blackPawn = loadSprite("img/blackpwn.png");
+        static sf::Sprite whiteQueen = loadSprite("img/whiteQ.png");
+        static sf::Sprite blackQueen = loadSprite("img/blackQ.png");
+        static sf::Sprite selectedB = loadSprite("img/selected.png");
 
         selectedB.setScale(1, 1.025);
 
