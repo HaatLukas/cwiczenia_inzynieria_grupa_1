@@ -1,0 +1,6 @@
+Refactoring Note:
+
+1. Skrócenie kodu w switch statement poprzez wyciągnięcie na zewnątrz funkcji glPushMatrix() oraz glPopMatrix(), ponieważ
+w prawie każdym przypadku i tak te funkcje były wywoływane. Aby uniknąć powtarzania się i wydłużania kodu, 
+stworzyłem instrukcję warunkową, która sprawdza nietypowy przypadek i oddzielnie nim sie zajmuje, a pozostałymi
+(normalnymi) zajmuje sie w elsie
