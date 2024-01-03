@@ -5,10 +5,14 @@
 #include "../entities/player.h"
 #include "../entities/board.h"
 #include "SFML/Graphics.hpp"
+#include "gtest/gtest_prod.h"
 
 namespace game {
 
     class Engine {
+        friend class EngineTests;
+        FRIEND_TEST(EngineTests, isGameStarting);
+
         Board board;
         Player *players[2];
         Player *activePlayer;
