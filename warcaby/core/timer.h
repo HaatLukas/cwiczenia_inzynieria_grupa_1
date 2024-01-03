@@ -30,6 +30,10 @@ namespace game {
         [[nodiscard]] int getValue() const {
             return value;
         }
+
+        [[nodiscard]] bool isPaused() const {
+            return paused;
+        }
     };
 
 } // game

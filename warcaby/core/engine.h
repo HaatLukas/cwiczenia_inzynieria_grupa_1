@@ -12,20 +12,28 @@ namespace game {
     class Engine {
         friend class EngineTests;
         FRIEND_TEST(EngineTests, isGameStarting);
+        FRIEND_TEST(EngineTests, isTimerSwapped);
+        FRIEND_TEST(EngineTests, isMoveValid);
+        FRIEND_TEST(EngineTests, isGameRunning);
+        FRIEND_TEST(EngineTests, isTimeChecked);
+        FRIEND_TEST(EngineTests, isQueen);
+        FRIEND_TEST(EngineTests, reDraw);
+        FRIEND_TEST(EngineTests, inputHandler);
 
         Board board;
         Player *players[2];
         Player *activePlayer;
         Player *winner;
         bool isActive;
+        sf::RenderWindow window;
 
-        void reDraw(sf::RenderWindow &window);
+        void reDraw();
 
         void checkPlayerTimers();
 
         void timeEnded(const Player *lost);
 
-        void swapPlayer();
+        void swapActivePlayer();
 
         void startGame();
 
@@ -33,7 +41,7 @@ namespace game {
 
         bool makeMove(coordinates c, coordinates newC);
 
-        void queenCheck(coordinates c, Pawn& temp);
+        void queenCheck(coordinates c);
 
         void pawnCapture(coordinates c);
 

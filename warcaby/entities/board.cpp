@@ -16,12 +16,8 @@ namespace game {
         board[c.x][c.y].reset();
     }
 
-    void Board::movePiece(coordinates c, coordinates newC) {
-        board[c.x][c.y].swap(board[newC.x][newC.y]);
-    }
-
     void Board::movePawn(coordinates c, coordinates newC) {
-        movePiece(c, newC);
+        board[c.x][c.y].swap(board[newC.x][newC.y]);
     }
 
     void Board::draw(sf::RenderTarget &target, const std::string &timerVal1, const std::string &timerVal2) {

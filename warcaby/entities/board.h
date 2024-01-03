@@ -15,6 +15,10 @@ namespace game {
 
     struct coordinates {
         int x, y;
+
+        bool operator==(const coordinates &c) const {
+            return this->x == c.x && this->y == c.y;
+        }
     };
 
     class Board {
@@ -27,11 +31,9 @@ namespace game {
 
         void deletePawn(coordinates c);
 
-        void movePiece(coordinates c, coordinates newC);
-
         void movePawn(coordinates c, coordinates newC);
 
-        void draw(sf::RenderTarget &target, const std::string& timerVal1, const std::string& timerVal2);
+        void draw(sf::RenderTarget &target, const std::string &timerVal1, const std::string &timerVal2);
 
         [[nodiscard]] std::optional<Pawn> &getPawnAt(coordinates c) {
             return board[c.x][c.y];

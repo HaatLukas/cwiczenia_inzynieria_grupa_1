@@ -3,7 +3,9 @@
 #include "../helpers/formatter.h"
 
 namespace game {
-    Engine::Engine(int gameTime) : players(), isActive(false), winner() {
+    Engine::Engine(int gameTime) : players(), isActive(false), winner(),
+                                   window(sf::VideoMode(1000, 800), "warcaby!",
+                                          sf::Style::Titlebar | sf::Style::Close) {
         players[0] = new Player("1");
         players[1] = new Player("2");
 
@@ -17,7 +19,7 @@ namespace game {
         activePlayer = players[0];
     }
 
-    void Engine::reDraw(sf::RenderWindow &window) {
+    void Engine::reDraw() {
         window.clear();
         board.draw(window, formatTime(players[0]->getTimer()->getValue()),
                    formatTime(players[1]->getTimer()->getValue()));
@@ -25,9 +27,6 @@ namespace game {
     }
 
     void Engine::run() {
-        sf::RenderWindow window(sf::VideoMode(1000, 800), "warcaby!",
-                                sf::Style::Titlebar | sf::Style::Close);
-
         startGame();
 
         while (window.isOpen()) {
@@ -43,7 +42,7 @@ namespace game {
                     inputHandler(event);
             }
 
-            reDraw(window);
+            reDraw();
         }
     }
 
@@ -66,7 +65,7 @@ namespace game {
         activePlayer->getTimer()->resume();
     }
 
-    void Engine::swapPlayer() {
+    void Engine::swapActivePlayer() {
         activePlayer->getTimer()->stop();
 
         for (auto &player: players)
@@ -86,7 +85,7 @@ namespace game {
         if (board.getPawnAt(newC) && temp)
             return false;
 
-        if((newC.x < 0 || newC.x > 9) || (newC.y > 9 || newC.y < 0))
+        if ((newC.x < 0 || newC.x > 9) || (newC.y > 9 || newC.y < 0))
             return false;
 
         int dx = std::abs(newC.x - c.x);
@@ -94,18 +93,18 @@ namespace game {
 
         if (activePlayer == players[0] && board.getPawnAt(c)->getColor() == 1) {
             if (dx == 2 && dy == -2) {
-                if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1})->getColor() == 2)
-                    board.deletePawn({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1});
-                else if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1 , newC.y + 1})->getColor() == 1)
+                if (board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1, newC.y + 1})->getColor() == 2)
+                    board.deletePawn({newC.x > c.x ? newC.x - 1 : c.x - 1, newC.y + 1});
+                else if (board.getPawnAt({newC.x > c.x ? newC.x - 1 : c.x - 1, newC.y + 1})->getColor() == 1)
                     return false;
                 return true;
             } else
                 return dx == 1 && dy == -1;
-        } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2){
+        } else if (activePlayer == players[1] && board.getPawnAt(c)->getColor() == 2) {
             if (dx == 2 && dy == 2) {
-                if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 1)
+                if (board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 1)
                     board.deletePawn({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1});
-                else if(board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 2)
+                else if (board.getPawnAt({newC.x > c.x ? newC.x - 1 : newC.x + 1, newC.y - 1})->getColor() == 2)
                     return false;
                 return true;
             } else
@@ -119,20 +118,22 @@ namespace game {
         if (!validateMove(c, newC)) return false;
 
         board.movePawn(c, newC);
-        queenCheck(newC, *board.getPawnAt(newC));
-        swapPlayer();
+        queenCheck(newC);
+        swapActivePlayer();
 
         return true;
     }
 
-    void Engine::queenCheck(coordinates c, Pawn& temp){
-        if(temp.queenStatus())
+    void Engine::queenCheck(coordinates c) {
+        auto &temp = board.getPawnAt(c);
+
+        if (temp->queenStatus())
             return;
 
-        for(int i = 0; i < 5; i++)
-            if(temp.getColor() == 1 && c.x == 1 + (i * 2) && c.y == 0
-                    || temp.getColor() == 2 && c.x == i * 2 && c.y == 9)
-                temp.setQueenStatus(true);
+        for (int i = 0; i < 5; i++)
+            if (temp->getColor() == 1 && c.x == 1 + (i * 2) && c.y == 0
+                || temp->getColor() == 2 && c.x == i * 2 && c.y == 9)
+                temp->setQueenStatus(true);
     }
 
 //    void Engine::pawnCapture(game::coordinates c) {
