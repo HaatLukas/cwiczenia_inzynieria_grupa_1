@@ -1,0 +1,3 @@
+1. Ujednolicenie spacji przy tabulacjach.
+2. Nie przyrównywanie zmiennych typu boolean w wyrażeniach warunkowych.
+3. Zmniejszenie ilości kodu w main.cpp poprzez rozbicie kodu na mniejsze pliki.
