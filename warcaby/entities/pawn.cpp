@@ -6,4 +6,7 @@
 
 namespace game {
 
+    PawnBuilder Pawn::builder() {
+        return {};
+    }
 } // game

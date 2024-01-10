@@ -7,8 +7,8 @@ namespace game {
     Board::Board(Player *player1, Player *player2) {
         for (int i = 0; i < 10; i += 2)
             for (int j = 0; j < 4; j++) {
-                board[(j % 2 == 0 ? 1 : 0) + i][6 + j] = Pawn(player1, 1);
-                board[(j % 2 == 0 ? 1 : 0) + i][0 + j] = Pawn(player2, 2);
+                board[(j % 2 == 0 ? 1 : 0) + i][6 + j] = Pawn::builder().setOwner(player1).setColor(1).build();
+                board[(j % 2 == 0 ? 1 : 0) + i][0 + j] = Pawn::builder().setOwner(player2).setColor(2).build();
             }
     }
 
