@@ -58,22 +58,22 @@ namespace game {
     public:
         PawnBuilder() : pawn() {}
 
-        PawnBuilder &setOwner(Player *val) {
+        PawnBuilder &owner(Player *val) {
             pawn.owner = val;
             return *this;
         }
 
-        PawnBuilder &setColor(int val) {
+        PawnBuilder &color(int val) {
             pawn.color = val;
             return *this;
         }
 
-        PawnBuilder &setSelected(bool val) {
+        PawnBuilder &selected(bool val) {
             pawn.selected = val;
             return *this;
         }
 
-        PawnBuilder &setQueenStatus(bool val) {
+        PawnBuilder &queenStatus(bool val) {
             pawn.isQueen = val;
             return *this;
         }
